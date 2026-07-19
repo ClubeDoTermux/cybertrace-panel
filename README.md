@@ -2,6 +2,8 @@
 
 Painel de Investigação Digital com consultas a APIs públicas reais.
 
+![Cybertrace Panel Demo](demo.png)
+
 ## Menu
 
 ```
