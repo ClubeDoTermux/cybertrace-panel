@@ -37,7 +37,7 @@ Painel de Investigação Digital com consultas a APIs públicas reais.
 ```bash
 pkg update && pkg upgrade -y
 pkg install -y curl python3 git
-git clone https://github.com/carlos46743/cybertrace-panel.git
+git clone https://github.com/ClubeDoTermux/cybertrace-panel.git
 cd cybertrace-panel
 bash cybertrace.sh
 ```
@@ -46,7 +46,7 @@ bash cybertrace.sh
 
 ```bash
 sudo apt update && sudo apt install -y curl python3 git dnsutils
-git clone https://github.com/carlos46743/cybertrace-panel.git
+git clone https://github.com/ClubeDoTermux/cybertrace-panel.git
 cd cybertrace-panel
 bash cybertrace.sh
 ```

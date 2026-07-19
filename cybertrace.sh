@@ -7,13 +7,13 @@
 # INSTALAÇÃO NO TERMUX:
 #   pkg update && pkg upgrade -y
 #   pkg install -y curl python3 git
-#   git clone https://github.com/carlos46743/cybertrace-panel.git
+#   git clone https://github.com/ClubeDoTermux/cybertrace-panel.git
 #   cd cybertrace-panel
 #   bash cybertrace.sh
 #
 # INSTALAÇÃO NO LINUX (Debian/Ubuntu):
 #   sudo apt update && sudo apt install -y curl python3 git dnsutils
-#   git clone https://github.com/carlos46743/cybertrace-panel.git
+#   git clone https://github.com/ClubeDoTermux/cybertrace-panel.git
 #   cd cybertrace-panel
 #   bash cybertrace.sh
 #
@@ -69,7 +69,7 @@ banner() {
     echo "║                                               ║"
     echo "╠═══════════════════════════════════════════════╣"
     echo -e "║   ${AMARELO}🔍 PAINEL DE INVESTIGAÇÃO DIGITAL v2.1${VERMELHO}   ║"
-    echo -e "║   ${CIANO}🌐 github.com/carlos46743/cybertrace-panel${VERMELHO}  ║"
+    echo -e "║   ${CIANO}🌐 github.com/ClubeDoTermux/cybertrace-panel${VERMELHO}  ║"
     echo "╚═══════════════════════════════════════════════╝"
     echo -e "${RESET}"
 }
@@ -116,12 +116,12 @@ show_help() {
     echo ""
     echo -e "${VERDE}Instalação Termux:${RESET}"
     echo "  pkg install -y curl python3 git"
-    echo "  git clone https://github.com/carlos46743/cybertrace-panel.git"
+    echo "  git clone https://github.com/ClubeDoTermux/cybertrace-panel.git"
     echo "  cd cybertrace-panel && bash cybertrace.sh"
     echo ""
     echo -e "${VERDE}Instalação Linux:${RESET}"
     echo "  sudo apt install -y curl python3 git dnsutils"
-    echo "  git clone https://github.com/carlos46743/cybertrace-panel.git"
+    echo "  git clone https://github.com/ClubeDoTermux/cybertrace-panel.git"
     echo "  cd cybertrace-panel && bash cybertrace.sh"
     exit 0
 }
