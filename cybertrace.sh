@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =============================================
-# CYBERTRACE v2.1 - Painel de Investigação
+# CYBERTRACE v2.2 - Painel de Investigação
 # Consultas com APIs públicas reais
 # =============================================
 # INSTALAÇÃO NO TERMUX:
@@ -68,7 +68,7 @@ banner() {
     echo -e "║     ${CIANO}╚═════╝    ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝${VERMELHO}   ║"
     echo "║                                               ║"
     echo "╠═══════════════════════════════════════════════╣"
-    echo -e "║   ${AMARELO}🔍 PAINEL DE INVESTIGAÇÃO DIGITAL v2.1${VERMELHO}   ║"
+    echo -e "║   ${AMARELO}🔍 PAINEL DE INVESTIGAÇÃO DIGITAL v2.2${VERMELHO}   ║"
     echo -e "║   ${CIANO}🌐 github.com/ClubeDoTermux/cybertrace-panel${VERMELHO}  ║"
     echo "╚═══════════════════════════════════════════════╝"
     echo -e "${RESET}"
@@ -97,13 +97,13 @@ loader() {
 # HELP / USO VIA TERMINAL
 # =============================================
 show_help() {
-    echo -e "${CIANO}CYBERTRACE v2.1 - Painel de Investigação Digital${RESET}"
+    echo -e "${CIANO}CYBERTRACE v2.2 - Painel de Investigação Digital${RESET}"
     echo -e "${AMARELO}Uso:${RESET} bash cybertrace.sh [opção] [valor]"
     echo ""
     echo -e "${VERDE}Opções:${RESET}"
     echo -e "  ${AMARELO}sem argumentos${RESET}   → Menu interativo"
     echo -e "  ${AMARELO}--help, -h${RESET}       → Mostra esta ajuda"
-    echo -e "  ${AMARELO}--ip <IP>${RESET}        → Geolocalização + proxy/VPN"
+    echo -e "  ${AMARELO}--ip <IP>${RESET}        → IP detalhado: rua, bairro, CEP, DDD, ISP, ASN, proxy/VPN"
     echo -e "  ${AMARELO}--cnpj <CNPJ>${RESET}    → Consulta CNPJ (BrasilAPI)"
     echo -e "  ${AMARELO}--cep <CEP>${RESET}      → Consulta CEP (ViaCEP)"
     echo -e "  ${AMARELO}--cpf <CPF>${RESET}      → Valida CPF + UF de origem"
@@ -134,39 +134,14 @@ show_help() {
 buscar_ip() {
     banner
     section "📍 GEOLOCALIZAÇÃO POR IP"
+    echo -e "${CIANO}Detalhes: rua, bairro, CEP, DDD, ISP, ASN, proxy/VPN${RESET}"
     echo -ne "${AMARELO}IP (ex: 8.8.8.8) ou Enter p/ seu IP: ${RESET}"
     read ip
-    if [[ -z "$ip" ]]; then
-        ip=$(api_get "ifconfig.me")
-        echo -e "${CIANO}➜ Seu IP: $ip${RESET}"
-    fi
     echo -e "${CIANO}Consultando...${RESET}"
-    data=$(api_get "http://ip-api.com/json/${ip}?fields=status,country,countryCode,region,city,zip,lat,lon,isp,org,as,timezone,query,mobile,proxy,hosting")
-    status=$(echo "$data" | python3 -c "import sys,json; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
-    if [[ "$status" == "success" ]]; then
-        echo "$data" | python3 -c "
-import sys,json
-d=json.load(sys.stdin)
-print('${VERDE}════════════════════════════════════════════${RESET}')
-print(f'${AMARELO}🌍 IP:${RESET} {d[\"query\"]}')
-print(f'${AMARELO}📍 País:${RESET} {d[\"country\"]} ({d.get(\"countryCode\",\"\")})')
-print(f'${AMARELO}🏙️ Cidade:${RESET} {d.get(\"city\",\"\")} - {d.get(\"region\",\"\")}')
-print(f'${AMARELO}📮 CEP:${RESET} {d.get(\"zip\",\"\")}')
-print(f'${AMARELO}🌐 Coord:${RESET} {d.get(\"lat\",\"\")}, {d.get(\"lon\",\"\")}')
-print(f'${AMARELO}🏢 ISP:${RESET} {d.get(\"isp\",\"\")}')
-print(f'${AMARELO}📡 Org:${RESET} {d.get(\"org\",\"\")}')
-print(f'${AMARELO}🔗 ASN:${RESET} {d.get(\"as\",\"\")}')
-print(f'${AMARELO}🕐 TZ:${RESET} {d.get(\"timezone\",\"\")}')
-proxy = d.get('proxy','')
-hosting = d.get('hosting','')
-mobile = d.get('mobile','')
-if proxy: print(f'${VERMELHO}🛡️ Proxy/VPN:${RESET} SIM')
-if mobile: print(f'${AMARELO}📱 Rede móvel:${RESET} SIM')
-if hosting: print(f'${AMARELO}☁️  Hosting/Datacenter:${RESET} SIM')
-print(f'${AMARELO}🗺️ Mapa:${RESET} https://www.google.com/maps?q={d.get(\"lat\",\"\")},{d.get(\"lon\",\"\")}')
-        " 2>/dev/null
+    if [[ -z "$ip" ]]; then
+        python3 "$SCRIPT_DIR/ip_consulta.py"
     else
-        echo -e "${VERMELHO}IP inválido ou não encontrado${RESET}"
+        python3 "$SCRIPT_DIR/ip_consulta.py" "$ip"
     fi
     press_enter
     menu
@@ -928,8 +903,7 @@ ferramentas_extras() {
 # =============================================
 cli_ip() {
     echo -e "${CIANO}Buscando IP $1...${RESET}"
-    api_get "http://ip-api.com/json/$1?fields=status,country,region,city,isp,org,query,proxy,hosting" | \
-        python3 -c "import sys,json; d=json.load(sys.stdin); [print(f'{k}: {v}') for k,v in d.items()]" 2>/dev/null
+    python3 "$SCRIPT_DIR/ip_consulta.py" "$1" --plain 2>/dev/null
 }
 
 cli_cnpj() {
@@ -995,7 +969,7 @@ cli_tempo() {
 menu() {
     banner
     echo -e "${CIANO}╔═══════════════════════════════════════════════╗${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}1.${RESET} 📍 Buscar IP (ip-api.com real)      ${CIANO}║${RESET}"
+    echo -e "${CIANO}║${RESET}   ${AMARELO}1.${RESET} 📍 Buscar IP (rua, bairro, CEP, DDD...)   ${CIANO}║${RESET}"
     echo -e "${CIANO}║${RESET}   ${AMARELO}2.${RESET} 📱 Dados de Telefone                ${CIANO}║${RESET}"
     echo -e "${CIANO}║${RESET}   ${AMARELO}3.${RESET} 🚗 Buscar Placa (API real)          ${CIANO}║${RESET}"
     echo -e "${CIANO}║${RESET}   ${AMARELO}4.${RESET} 🆔 CNPJ (BrasilAPI - Receita)       ${CIANO}║${RESET}"

@@ -1,4 +1,4 @@
-# 🔍 Cybertrace Panel v2.1
+# 🔍 Cybertrace Panel v2.2
 
 Painel de Investigação Digital com consultas a APIs públicas reais.
 
@@ -7,7 +7,7 @@ Painel de Investigação Digital com consultas a APIs públicas reais.
 ## Menu
 
 ```
- 1. 📍 Buscar IP          (ip-api.com + proxy/VPN detection)
+ 1. 📍 Buscar IP          (rua, bairro, CEP, DDD, ISP, ASN, proxy/VPN)
  2. 📱 Dados de Telefone   (DDD, operadora, região - TODOS os DDDs do Brasil)
  3. 🚗 Buscar Placa        (BrasilAPI/FIPE)
  4. 🆔 CNPJ                (BrasilAPI - Receita Federal)
@@ -81,12 +81,21 @@ bash cybertrace.sh
 
 | API | Dados | Grátis |
 |-----|-------|--------|
-| [ip-api.com](http://ip-api.com) | Geolocalização de IP + proxy/VPN | ✅ |
+| [ip-api.com](http://ip-api.com) | Geolocalização de IP + proxy/VPN/hosting | ✅ |
+| [Nominatim/OSM](https://nominatim.openstreetmap.org) | Reverse geocoding: rua, bairro, CEP | ✅ |
 | [BrasilAPI](https://brasilapi.com.br) | CNPJ (Receita Federal), FIPE (veículos) | ✅ |
 | [ViaCEP](https://viacep.com.br) | CEP (rua, bairro, cidade) | ✅ |
 | [situacao-cadastral.com](https://www.situacao-cadastral.com) | CPF completo (via Selenium) | ✅ |
 | [wttr.in](https://wttr.in) | Previsão do tempo | ✅ |
 | [TinyURL](https://tinyurl.com) | Encurtador de URL | ✅ |
+
+## Novidades na v2.2
+
+- 🛣️ **IP detalhado**: rua, número, bairro e CEP via reverse geocoding (OpenStreetMap)
+- 🇧🇷 **ViaCEP integrado**: IPs brasileiros mostram logradouro oficial, complemento e DDD
+- 🔁 **PTR/hostname reverso** e distrito na consulta de IP
+- 📄 **Consulta de IP reescrita** em Python (`ip_consulta.py`) com fallbacks automáticos
+- ⚠️ Aviso de localização aproximada (nível ISP) para evitar interpretação errada
 
 ## Novidades na v2.1
 
