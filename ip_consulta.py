@@ -61,9 +61,14 @@ def format_cep(cep):
 
 
 def get_own_ip():
-    ip = http_get("http://ifconfig.me").strip()
-    if re.match(r"^\d{1,3}(\.\d{1,3}){3}$", ip):
-        return ip
+    # Tenta fontes em ordem até achar um IP válido (IPv4 ou IPv6)
+    for url in ("https://ifconfig.me/ip", "https://api.ipify.org",
+                "http://ifconfig.me"):
+        ip = http_get(url).strip()
+        if re.match(r"^\d{1,3}(\.\d{1,3}){3}$", ip):
+            return ip
+        if ":" in ip and re.match(r"^[0-9a-fA-F:]+$", ip):
+            return ip
     return ""
 
 
