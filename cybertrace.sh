@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =============================================
-# CYBERTRACE v2.2 - Painel de Investigação
+# CYBERTRACE v2.3 - Painel de Investigação
 # Consultas com APIs públicas reais
 # =============================================
 # INSTALAÇÃO NO TERMUX:
@@ -60,19 +60,20 @@ banner() {
     echo -e "${VERMELHO}"
     echo "╔═══════════════════════════════════════════════╗"
     echo "║                                               ║"
-    echo -e "║     ${CIANO}██████╗██╗   ██╗██████╗ ███████╗██████╗${VERMELHO}    ║"
-    echo -e "║     ${CIANO}██╔══██╗╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗${VERMELHO}   ║"
-    echo -e "║     ${CIANO}██████╔╝ ╚████╔╝ ██████╔╝█████╗  ██████╔╝${VERMELHO}   ║"
-    echo -e "║     ${CIANO}██╔══██╗  ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗${VERMELHO}   ║"
-    echo -e "║     ${CIANO}██████╔╝   ██║   ██████╔╝███████╗██║  ██║${VERMELHO}   ║"
-    echo -e "║     ${CIANO}╚═════╝    ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝${VERMELHO}   ║"
+    echo -e "║     ${CIANO}██████╗██╗   ██╗██████╗ ███████╗██████╗${VERMELHO}   ║"
+    echo -e "║     ${CIANO}██╔══██╗╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗${VERMELHO} ║"
+    echo -e "║     ${CIANO}██████╔╝ ╚████╔╝ ██████╔╝█████╗  ██████╔╝${VERMELHO} ║"
+    echo -e "║     ${CIANO}██╔══██╗  ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗${VERMELHO} ║"
+    echo -e "║     ${CIANO}██████╔╝   ██║   ██████╔╝███████╗██║  ██║${VERMELHO} ║"
+    echo -e "║     ${CIANO}╚═════╝    ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝${VERMELHO} ║"
     echo "║                                               ║"
     echo "╠═══════════════════════════════════════════════╣"
-    echo -e "║   ${AMARELO}🔍 PAINEL DE INVESTIGAÇÃO DIGITAL v2.2${VERMELHO}   ║"
-    echo -e "║   ${CIANO}🌐 github.com/ClubeDoTermux/cybertrace-panel${VERMELHO}  ║"
+    echo -e "║${AMARELO}      PAINEL DE INVESTIGAÇÃO DIGITAL v2.3      ${VERMELHO}║"
+    echo -e "║${CIANO}   github.com/ClubeDoTermux/cybertrace-panel   ${VERMELHO}║"
     echo "╚═══════════════════════════════════════════════╝"
     echo -e "${RESET}"
 }
+
 
 section() {
     echo -e "${AZUL}╔═══════════════════════════════════════════════╗${RESET}"
@@ -90,14 +91,14 @@ loader() {
         i=$(( (i+1) % ${#spin} ))
         sleep 0.1
     done
-    printf "\r${VERDE}✓${RESET} Pronto!          \n"
+    printf "\r${VERDE}${RESET} Pronto!          \n"
 }
 
 # =============================================
 # HELP / USO VIA TERMINAL
 # =============================================
 show_help() {
-    echo -e "${CIANO}CYBERTRACE v2.2 - Painel de Investigação Digital${RESET}"
+    echo -e "${CIANO}CYBERTRACE v2.3 - Painel de Investigação Digital${RESET}"
     echo -e "${AMARELO}Uso:${RESET} bash cybertrace.sh [opção] [valor]"
     echo ""
     echo -e "${VERDE}Opções:${RESET}"
@@ -133,7 +134,7 @@ show_help() {
 # 1 - Buscar IP
 buscar_ip() {
     banner
-    section "📍 GEOLOCALIZAÇÃO POR IP"
+    section "GEOLOCALIZAÇÃO POR IP"
     echo -e "${CIANO}Detalhes: rua, bairro, CEP, DDD, ISP, ASN, proxy/VPN${RESET}"
     echo -ne "${AMARELO}IP (ex: 8.8.8.8) ou Enter p/ seu IP: ${RESET}"
     read ip
@@ -150,8 +151,8 @@ buscar_ip() {
 # 2 - Telefone
 buscar_telefone() {
     banner
-    section "📱 CONSULTAR TELEFONE"
-    echo -e "${AMARELO}📌 Formato: 55 11 999999999 (país DDD número)${RESET}"
+    section "CONSULTAR TELEFONE"
+    echo -e "${AMARELO}Formato: 55 11 999999999 (país DDD número)${RESET}"
     echo -ne "${AMARELO}Número: ${RESET}"
     read tel
     tel=$(echo "$tel" | tr -d ' +-')
@@ -166,151 +167,151 @@ buscar_telefone() {
     ddd="${tel:2:2}"
     numero="${tel:4}"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-    echo -e "${AMARELO}📞 Número completo:${RESET} +$tel"
-    echo -e "${AMARELO}🌍 País:${RESET} $( [[ "$pais" == "55" ]] && echo "Brasil" || echo "$pais")"
-    echo -e "${AMARELO}📌 DDD:${RESET} $ddd"
-    echo -e "${AMARELO}📱 Número:${RESET} $numero"
-    echo -e "${AMARELO}🔢 Tipo:${RESET} $( [[ ${#numero} -eq 9 ]] && echo "Celular" || echo "Fixo")"
+    echo -e "${AMARELO}Número completo:${RESET} +$tel"
+    echo -e "${AMARELO}País:${RESET} $( [[ "$pais" == "55" ]] && echo "Brasil" || echo "$pais")"
+    echo -e "${AMARELO}DDD:${RESET} $ddd"
+    echo -e "${AMARELO}Número:${RESET} $numero"
+    echo -e "${AMARELO}Tipo:${RESET} $( [[ ${#numero} -eq 9 ]] && echo "Celular" || echo "Fixo")"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     echo ""
-    echo -e "${CIANO}📋 DADOS DO DDD:${RESET}"
+    echo -e "${CIANO}DADOS DO DDD:${RESET}"
     case $ddd in
-        11) echo -e "${AMARELO}📍 Estado:${RESET} SP - São Paulo"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        12) echo -e "${AMARELO}📍 Estado:${RESET} SP - São José dos Campos"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        13) echo -e "${AMARELO}📍 Estado:${RESET} SP - Santos"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        14) echo -e "${AMARELO}📍 Estado:${RESET} SP - Bauru"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        15) echo -e "${AMARELO}📍 Estado:${RESET} SP - Sorocaba"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        16) echo -e "${AMARELO}📍 Estado:${RESET} SP - Ribeirão Preto"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        17) echo -e "${AMARELO}📍 Estado:${RESET} SP - São José do Rio Preto"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        18) echo -e "${AMARELO}📍 Estado:${RESET} SP - Presidente Prudente"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        19) echo -e "${AMARELO}📍 Estado:${RESET} SP - Campinas"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        21) echo -e "${AMARELO}📍 Estado:${RESET} RJ - Rio de Janeiro"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        22) echo -e "${AMARELO}📍 Estado:${RESET} RJ - Campos"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        24) echo -e "${AMARELO}📍 Estado:${RESET} RJ - Volta Redonda"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        27) echo -e "${AMARELO}📍 Estado:${RESET} ES - Vitória"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        28) echo -e "${AMARELO}📍 Estado:${RESET} ES - Cachoeiro"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        31) echo -e "${AMARELO}📍 Estado:${RESET} MG - Belo Horizonte"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        32) echo -e "${AMARELO}📍 Estado:${RESET} MG - Juiz de Fora"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        33) echo -e "${AMARELO}📍 Estado:${RESET} MG - Governador Valadares"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        34) echo -e "${AMARELO}📍 Estado:${RESET} MG - Uberlândia"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        35) echo -e "${AMARELO}📍 Estado:${RESET} MG - Poços de Caldas"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        37) echo -e "${AMARELO}📍 Estado:${RESET} MG - Divinópolis"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        38) echo -e "${AMARELO}📍 Estado:${RESET} MG - Montes Claros"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        41) echo -e "${AMARELO}📍 Estado:${RESET} PR - Curitiba"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        42) echo -e "${AMARELO}📍 Estado:${RESET} PR - Ponta Grossa"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        43) echo -e "${AMARELO}📍 Estado:${RESET} PR - Londrina"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        44) echo -e "${AMARELO}📍 Estado:${RESET} PR - Maringá"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        45) echo -e "${AMARELO}📍 Estado:${RESET} PR - Foz do Iguaçu"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        46) echo -e "${AMARELO}📍 Estado:${RESET} PR - Francisco Beltrão"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        47) echo -e "${AMARELO}📍 Estado:${RESET} SC - Joinville"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        48) echo -e "${AMARELO}📍 Estado:${RESET} SC - Florianópolis"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        49) echo -e "${AMARELO}📍 Estado:${RESET} SC - Chapecó"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        51) echo -e "${AMARELO}📍 Estado:${RESET} RS - Porto Alegre"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        53) echo -e "${AMARELO}📍 Estado:${RESET} RS - Pelotas"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        54) echo -e "${AMARELO}📍 Estado:${RESET} RS - Caxias do Sul"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        55) echo -e "${AMARELO}📍 Estado:${RESET} RS - Santa Maria"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        61) echo -e "${AMARELO}📍 Estado:${RESET} DF - Brasília"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        62) echo -e "${AMARELO}📍 Estado:${RESET} GO - Goiânia"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        63) echo -e "${AMARELO}📍 Estado:${RESET} TO - Palmas"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        64) echo -e "${AMARELO}📍 Estado:${RESET} GO - Rio Verde"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        65) echo -e "${AMARELO}📍 Estado:${RESET} MT - Cuiabá"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        66) echo -e "${AMARELO}📍 Estado:${RESET} MT - Rondonópolis"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        67) echo -e "${AMARELO}📍 Estado:${RESET} MS - Campo Grande"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        68) echo -e "${AMARELO}📍 Estado:${RESET} AC - Rio Branco"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        69) echo -e "${AMARELO}📍 Estado:${RESET} RO - Porto Velho"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        71) echo -e "${AMARELO}📍 Estado:${RESET} BA - Salvador"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        73) echo -e "${AMARELO}📍 Estado:${RESET} BA - Ilhéus"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        74) echo -e "${AMARELO}📍 Estado:${RESET} BA - Juazeiro"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        75) echo -e "${AMARELO}📍 Estado:${RESET} BA - Feira de Santana"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        77) echo -e "${AMARELO}📍 Estado:${RESET} BA - Barreiras"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        79) echo -e "${AMARELO}📍 Estado:${RESET} SE - Aracaju"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        81) echo -e "${AMARELO}📍 Estado:${RESET} PE - Recife"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        82) echo -e "${AMARELO}📍 Estado:${RESET} AL - Maceió"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        83) echo -e "${AMARELO}📍 Estado:${RESET} PB - João Pessoa"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        84) echo -e "${AMARELO}📍 Estado:${RESET} RN - Natal"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        85) echo -e "${AMARELO}📍 Estado:${RESET} CE - Fortaleza"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        86) echo -e "${AMARELO}📍 Estado:${RESET} PI - Teresina"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        87) echo -e "${AMARELO}📍 Estado:${RESET} PE - Petrolina"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        88) echo -e "${AMARELO}📍 Estado:${RESET} CE - Juazeiro do Norte"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        89) echo -e "${AMARELO}📍 Estado:${RESET} PI - Parnaíba"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        91) echo -e "${AMARELO}📍 Estado:${RESET} PA - Belém"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        92) echo -e "${AMARELO}📍 Estado:${RESET} AM - Manaus"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        93) echo -e "${AMARELO}📍 Estado:${RESET} PA - Santarém"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        94) echo -e "${AMARELO}📍 Estado:${RESET} PA - Marabá"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        95) echo -e "${AMARELO}📍 Estado:${RESET} RR - Boa Vista"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        96) echo -e "${AMARELO}📍 Estado:${RESET} AP - Macapá"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        97) echo -e "${AMARELO}📍 Estado:${RESET} AM - Coari"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        98) echo -e "${AMARELO}📍 Estado:${RESET} MA - São Luís"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
-        99) echo -e "${AMARELO}📍 Estado:${RESET} MA - Imperatriz"
-            echo -e "${AMARELO}📡 Operadoras:${RESET} Vivo, TIM, Claro" ;;
-        *) echo -e "${AMARELO}📍 DDD não mapeado${RESET}"
-           echo -e "${CIANO}💡 Consulte: https://www.codigosddd.com.br/${RESET}" ;;
+        11) echo -e "${AMARELO}Estado:${RESET} SP - São Paulo"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        12) echo -e "${AMARELO}Estado:${RESET} SP - São José dos Campos"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        13) echo -e "${AMARELO}Estado:${RESET} SP - Santos"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        14) echo -e "${AMARELO}Estado:${RESET} SP - Bauru"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        15) echo -e "${AMARELO}Estado:${RESET} SP - Sorocaba"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        16) echo -e "${AMARELO}Estado:${RESET} SP - Ribeirão Preto"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        17) echo -e "${AMARELO}Estado:${RESET} SP - São José do Rio Preto"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        18) echo -e "${AMARELO}Estado:${RESET} SP - Presidente Prudente"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        19) echo -e "${AMARELO}Estado:${RESET} SP - Campinas"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        21) echo -e "${AMARELO}Estado:${RESET} RJ - Rio de Janeiro"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        22) echo -e "${AMARELO}Estado:${RESET} RJ - Campos"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        24) echo -e "${AMARELO}Estado:${RESET} RJ - Volta Redonda"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        27) echo -e "${AMARELO}Estado:${RESET} ES - Vitória"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        28) echo -e "${AMARELO}Estado:${RESET} ES - Cachoeiro"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        31) echo -e "${AMARELO}Estado:${RESET} MG - Belo Horizonte"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        32) echo -e "${AMARELO}Estado:${RESET} MG - Juiz de Fora"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        33) echo -e "${AMARELO}Estado:${RESET} MG - Governador Valadares"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        34) echo -e "${AMARELO}Estado:${RESET} MG - Uberlândia"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        35) echo -e "${AMARELO}Estado:${RESET} MG - Poços de Caldas"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        37) echo -e "${AMARELO}Estado:${RESET} MG - Divinópolis"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        38) echo -e "${AMARELO}Estado:${RESET} MG - Montes Claros"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        41) echo -e "${AMARELO}Estado:${RESET} PR - Curitiba"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        42) echo -e "${AMARELO}Estado:${RESET} PR - Ponta Grossa"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        43) echo -e "${AMARELO}Estado:${RESET} PR - Londrina"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        44) echo -e "${AMARELO}Estado:${RESET} PR - Maringá"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        45) echo -e "${AMARELO}Estado:${RESET} PR - Foz do Iguaçu"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        46) echo -e "${AMARELO}Estado:${RESET} PR - Francisco Beltrão"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        47) echo -e "${AMARELO}Estado:${RESET} SC - Joinville"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        48) echo -e "${AMARELO}Estado:${RESET} SC - Florianópolis"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        49) echo -e "${AMARELO}Estado:${RESET} SC - Chapecó"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        51) echo -e "${AMARELO}Estado:${RESET} RS - Porto Alegre"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        53) echo -e "${AMARELO}Estado:${RESET} RS - Pelotas"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        54) echo -e "${AMARELO}Estado:${RESET} RS - Caxias do Sul"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        55) echo -e "${AMARELO}Estado:${RESET} RS - Santa Maria"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        61) echo -e "${AMARELO}Estado:${RESET} DF - Brasília"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        62) echo -e "${AMARELO}Estado:${RESET} GO - Goiânia"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        63) echo -e "${AMARELO}Estado:${RESET} TO - Palmas"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        64) echo -e "${AMARELO}Estado:${RESET} GO - Rio Verde"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        65) echo -e "${AMARELO}Estado:${RESET} MT - Cuiabá"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        66) echo -e "${AMARELO}Estado:${RESET} MT - Rondonópolis"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        67) echo -e "${AMARELO}Estado:${RESET} MS - Campo Grande"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        68) echo -e "${AMARELO}Estado:${RESET} AC - Rio Branco"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        69) echo -e "${AMARELO}Estado:${RESET} RO - Porto Velho"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        71) echo -e "${AMARELO}Estado:${RESET} BA - Salvador"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        73) echo -e "${AMARELO}Estado:${RESET} BA - Ilhéus"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        74) echo -e "${AMARELO}Estado:${RESET} BA - Juazeiro"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        75) echo -e "${AMARELO}Estado:${RESET} BA - Feira de Santana"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        77) echo -e "${AMARELO}Estado:${RESET} BA - Barreiras"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        79) echo -e "${AMARELO}Estado:${RESET} SE - Aracaju"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        81) echo -e "${AMARELO}Estado:${RESET} PE - Recife"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        82) echo -e "${AMARELO}Estado:${RESET} AL - Maceió"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        83) echo -e "${AMARELO}Estado:${RESET} PB - João Pessoa"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        84) echo -e "${AMARELO}Estado:${RESET} RN - Natal"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        85) echo -e "${AMARELO}Estado:${RESET} CE - Fortaleza"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        86) echo -e "${AMARELO}Estado:${RESET} PI - Teresina"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        87) echo -e "${AMARELO}Estado:${RESET} PE - Petrolina"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        88) echo -e "${AMARELO}Estado:${RESET} CE - Juazeiro do Norte"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        89) echo -e "${AMARELO}Estado:${RESET} PI - Parnaíba"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        91) echo -e "${AMARELO}Estado:${RESET} PA - Belém"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        92) echo -e "${AMARELO}Estado:${RESET} AM - Manaus"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        93) echo -e "${AMARELO}Estado:${RESET} PA - Santarém"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        94) echo -e "${AMARELO}Estado:${RESET} PA - Marabá"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        95) echo -e "${AMARELO}Estado:${RESET} RR - Boa Vista"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        96) echo -e "${AMARELO}Estado:${RESET} AP - Macapá"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        97) echo -e "${AMARELO}Estado:${RESET} AM - Coari"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        98) echo -e "${AMARELO}Estado:${RESET} MA - São Luís"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro, Oi" ;;
+        99) echo -e "${AMARELO}Estado:${RESET} MA - Imperatriz"
+            echo -e "${AMARELO}Operadoras:${RESET} Vivo, TIM, Claro" ;;
+        *) echo -e "${AMARELO}DDD não mapeado${RESET}"
+           echo -e "${CIANO}Consulte: https://www.codigosddd.com.br/${RESET}" ;;
     esac
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     press_enter
@@ -320,7 +321,7 @@ buscar_telefone() {
 # 3 - Placa
 buscar_placa() {
     banner
-    section "🚗 CONSULTAR PLACA"
+    section "CONSULTAR PLACA"
     echo -ne "${AMARELO}Placa (ABC1234 ou ABC1D23 Mercosul): ${RESET}"
     read placa
     placa=$(echo "$placa" | tr 'a-z' 'A-Z' | tr -d ' ')
@@ -338,16 +339,16 @@ import sys,json
 d=json.load(sys.stdin)
 if isinstance(d,list): d=d[0]
 print('${VERDE}════════════════════════════════════════════${RESET}')
-print(f'${AMARELO}🔢 Placa:${RESET} $placa')
+print(f'${AMARELO}Placa:${RESET} $placa')
 for k,v in d.items():
     print(f'${AMARELO}• {k}:${RESET} {v}')
         " 2>/dev/null
     else
-        echo -e "${AMARELO}⚠️ API FIPE sem dados para esta placa${RESET}"
+        echo -e "${AMARELO}[!] API FIPE sem dados para esta placa${RESET}"
         echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-        echo -e "${AMARELO}🔢 Placa:${RESET} $placa"
-        echo -e "${AMARELO}📌 Formato:${RESET} $( [[ ${#placa} -eq 7 ]] && echo "Padrão antigo" || echo "Mercosul")"
-        echo -e "${CIANO}💡 Consulte o site do Detran do seu estado${RESET}"
+        echo -e "${AMARELO}Placa:${RESET} $placa"
+        echo -e "${AMARELO}Formato:${RESET} $( [[ ${#placa} -eq 7 ]] && echo "Padrão antigo" || echo "Mercosul")"
+        echo -e "${CIANO}Consulte o site do Detran do seu estado${RESET}"
     fi
     press_enter
     menu
@@ -356,7 +357,7 @@ for k,v in d.items():
 # 4 - CNPJ
 buscar_cnpj() {
     banner
-    section "🆔 CNPJ REAL (BrasilAPI - Receita Federal)"
+    section "CNPJ REAL (BrasilAPI - Receita Federal)"
     echo -ne "${AMARELO}CNPJ (apenas números): ${RESET}"
     read cnpj
     cnpj=$(echo "$cnpj" | tr -d ' ./-')
@@ -373,20 +374,20 @@ buscar_cnpj() {
 import sys,json
 d=json.load(sys.stdin)
 print('${VERDE}════════════════════════════════════════════${RESET}')
-print(f'${AMARELO}🏢 CNPJ:${RESET} {d.get(\"cnpj\",\"\")}')
-print(f'${AMARELO}📛 Razão Social:${RESET} {d.get(\"razao_social\",\"\")}')
-print(f'${AMARELO}🧑 Nome Fantasia:${RESET} {d.get(\"nome_fantasia\",\"\")}')
-print(f'${AMARELO}🏠 Endereço:${RESET} {d.get(\"logradouro\",\"\")}, {d.get(\"numero\",\"\")} - {d.get(\"bairro\",\"\")}')
-print(f'${AMARELO}📍 Cidade/UF:${RESET} {d.get(\"municipio\",\"\")}/{d.get(\"uf\",\"\")} - {d.get(\"cep\",\"\")}')
-print(f'${AMARELO}📞 Telefone:${RESET} {d.get(\"ddd_telefone_1\",\"\")}')
-print(f'${AMARELO}📧 Email:${RESET} {d.get(\"email\",\"\")}')
-print(f'${AMARELO}🏭 Porte:${RESET} {d.get(\"porte\",\"\")}')
-print(f'${AMARELO}📅 Abertura:${RESET} {d.get(\"data_inicio_atividade\",\"\")}')
-print(f'${AMARELO}📊 Situação:${RESET} {d.get(\"situacao_cadastral\",\"\")} ({d.get(\"data_situacao_cadastral\",\"\")})')
-print(f'${AMARELO}💰 Capital:${RESET} R$ {d.get(\"capital_social\",\"\")}')
-print(f'${AMARELO}🏛️ Natureza Jurídica:${RESET} {d.get(\"natureza_juridica\",\"\")}')
-print(f'${AMARELO}📋 CNAE:${RESET} {d.get(\"cnae_fiscal\",\"\")} - {d.get(\"cnae_fiscal_descricao\",\"\")}')
-if d.get(\"cnpj_raiz\"): print(f'${AMARELO}📎 Matriz:${RESET} {d.get(\"cnpj_raiz\",\"\")}')
+print(f'${AMARELO}CNPJ:${RESET} {d.get(\"cnpj\",\"\")}')
+print(f'${AMARELO}Razão Social:${RESET} {d.get(\"razao_social\",\"\")}')
+print(f'${AMARELO}Nome Fantasia:${RESET} {d.get(\"nome_fantasia\",\"\")}')
+print(f'${AMARELO}Endereço:${RESET} {d.get(\"logradouro\",\"\")}, {d.get(\"numero\",\"\")} - {d.get(\"bairro\",\"\")}')
+print(f'${AMARELO}Cidade/UF:${RESET} {d.get(\"municipio\",\"\")}/{d.get(\"uf\",\"\")} - {d.get(\"cep\",\"\")}')
+print(f'${AMARELO}Telefone:${RESET} {d.get(\"ddd_telefone_1\",\"\")}')
+print(f'${AMARELO}Email:${RESET} {d.get(\"email\",\"\")}')
+print(f'${AMARELO}Porte:${RESET} {d.get(\"porte\",\"\")}')
+print(f'${AMARELO}Abertura:${RESET} {d.get(\"data_inicio_atividade\",\"\")}')
+print(f'${AMARELO}Situação:${RESET} {d.get(\"situacao_cadastral\",\"\")} ({d.get(\"data_situacao_cadastral\",\"\")})')
+print(f'${AMARELO}Capital:${RESET} R$ {d.get(\"capital_social\",\"\")}')
+print(f'${AMARELO}Natureza Jurídica:${RESET} {d.get(\"natureza_juridica\",\"\")}')
+print(f'${AMARELO}CNAE:${RESET} {d.get(\"cnae_fiscal\",\"\")} - {d.get(\"cnae_fiscal_descricao\",\"\")}')
+if d.get(\"cnpj_raiz\"): print(f'${AMARELO}Matriz:${RESET} {d.get(\"cnpj_raiz\",\"\")}')
 print('${VERDE}════════════════════════════════════════════${RESET}')
         " 2>/dev/null
     else
@@ -399,9 +400,9 @@ print('${VERDE}═════════════════════�
 # 5 - Validar CPF
 validar_cpf() {
     banner
-    section "📇 VALIDAÇÃO DE CPF"
-    echo -e "${VERMELHO}⚠️ Dados reais de CPF são protegidos por lei${RESET}"
-    echo -e "${AMARELO}   Só é possível validar os dígitos (verificar se é válido)${RESET}"
+    section "VALIDAÇÃO DE CPF"
+    echo -e "${VERMELHO}[!] Dados reais de CPF são protegidos por lei${RESET}"
+    echo -e "${AMARELO}Só é possível validar os dígitos (verificar se é válido)${RESET}"
     echo ""
     echo -ne "${AMARELO}CPF (11 dígitos): ${RESET}"
     read cpf
@@ -424,12 +425,12 @@ r2 = (s2 * 10) % 11
 if r2 == 10: r2 = 0
 valido = r1 == dv1 and r2 == dv2
 print(f'${VERDE}════════════════════════════════════════════${RESET}')
-print(f'${AMARELO}🆔 CPF:${RESET} {cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}')
-print(f'${AMARELO}✅ Válido:${RESET} {\"${VERDE}SIM${RESET}\" if valido else \"${VERMELHO}NÃO${RESET}\"}')
+print(f'${AMARELO}CPF:${RESET} {cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}')
+print(f'${AMARELO}[OK] Válido:${RESET} {\"${VERDE}SIM${RESET}\" if valido else \"${VERMELHO}NÃO${RESET}\"}')
 if valido:
     estados = {0:'RS',1:'DF/GO/MS/MT',2:'PA/AM/AC/RO/RR',3:'CE/MA/PI',4:'PE/PB/RN/AL',5:'BA/SE',6:'MG',7:'RJ/ES',8:'SP',9:'PR/SC'}
-    print(f'${AMARELO}📍 UF emissor:${RESET} {estados.get(int(cpf[8]),\"Desconhecido\")}')
-    print(f'${AMARELO}🔢 Dígitos verificadores:${RESET} OK')
+    print(f'${AMARELO}UF emissor:${RESET} {estados.get(int(cpf[8]),\"Desconhecido\")}')
+    print(f'${AMARELO}Dígitos verificadores:${RESET} OK')
 print(f'${VERDE}════════════════════════════════════════════${RESET}')
     " 2>/dev/null
     press_enter
@@ -439,7 +440,7 @@ print(f'${VERDE}═════════════════════�
 # 6 - Domínio
 buscar_dominio() {
     banner
-    section "🌐 CONSULTAR DOMÍNIO (DNS + WHOIS)"
+    section "CONSULTAR DOMÍNIO (DNS + WHOIS)"
     echo -ne "${AMARELO}Domínio (ex: google.com): ${RESET}"
     read dominio
     [[ -z "$dominio" ]] && { echo -e "${VERMELHO}Inválido${RESET}"; sleep 2; menu; return; }
@@ -447,25 +448,25 @@ buscar_dominio() {
     ip=$(dig +short "$dominio" 2>/dev/null | head -1)
     if [[ -n "$ip" ]]; then
         echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-        echo -e "${AMARELO}🌐 Domínio:${RESET} $dominio"
-        echo -e "${AMARELO}📡 IP:${RESET} $ip"
+        echo -e "${AMARELO}Domínio:${RESET} $dominio"
+        echo -e "${AMARELO}IP:${RESET} $ip"
         echo ""
-        echo -e "${CIANO}📋 Registros DNS:${RESET}"
-        echo -e "${AMARELO}📬 MX:${RESET}"
+        echo -e "${CIANO}Registros DNS:${RESET}"
+        echo -e "${AMARELO}MX:${RESET}"
         dig +short MX "$dominio" 2>/dev/null | while read line; do echo "   $line"; done
-        echo -e "${AMARELO}📝 NS:${RESET}"
+        echo -e "${AMARELO}NS:${RESET}"
         dig +short NS "$dominio" 2>/dev/null | while read line; do echo "   $line"; done
-        echo -e "${AMARELO}📧 TXT:${RESET}"
+        echo -e "${AMARELO}TXT:${RESET}"
         dig +short TXT "$dominio" 2>/dev/null | head -5 | while read line; do echo "   $line"; done
         echo ""
         if command -v whois &>/dev/null; then
-            echo -e "${CIANO}📋 WHOIS (primeiras linhas):${RESET}"
+            echo -e "${CIANO}WHOIS (primeiras linhas):${RESET}"
             whois "$dominio" 2>/dev/null | grep -iE "registrant|owner|email|country|created|expir|name|organization|status" | head -10 | while read line; do
-                echo -e "${AMARELO}   ${RESET}$line"
+                echo -e "${AMARELO}${RESET}$line"
             done
         fi
         echo ""
-        echo -e "${AMARELO}🔗 Registro.br:${RESET} https://www.registro.br/cgi-bin/whois/?qr=$dominio"
+        echo -e "${AMARELO}Registro.br:${RESET} https://www.registro.br/cgi-bin/whois/?qr=$dominio"
     else
         echo -e "${VERMELHO}Domínio não encontrado ou sem DNS resolvido${RESET}"
     fi
@@ -476,23 +477,23 @@ buscar_dominio() {
 # 7 - Buscar Nome (Google Dorking)
 buscar_nome() {
     banner
-    section "🔍 BUSCAR NOME (Google Dorking)"
+    section "BUSCAR NOME (Google Dorking)"
     echo -ne "${AMARELO}Nome completo: ${RESET}"
     read nome
     [[ -z "$nome" ]] && { echo -e "${VERMELHO}Inválido${RESET}"; sleep 2; menu; return; }
     nome_encoded=$(url_encode "$nome")
     echo -e "${CIANO}Buscando informações públicas sobre: $nome${RESET}"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-    echo -e "${AMARELO}🔗 Google:${RESET} https://www.google.com/search?q=$nome_encoded"
-    echo -e "${AMARELO}🔗 LinkedIn:${RESET} https://www.linkedin.com/search/results/all/?keywords=$nome_encoded"
-    echo -e "${AMARELO}🔗 Facebook:${RESET} https://www.facebook.com/search/top/?q=$nome_encoded"
-    echo -e "${AMARELO}🔗 Instagram:${RESET} https://www.instagram.com/$nome_encoded/"
-    echo -e "${AMARELO}🔗 Twitter/X:${RESET} https://twitter.com/search?q=$nome_encoded"
-    echo -e "${AMARELO}🔗 YouTube:${RESET} https://www.youtube.com/results?search_query=$nome_encoded"
-    echo -e "${AMARELO}🔗 Escavador:${RESET} https://www.escavador.com/?q=$nome_encoded"
-    echo -e "${AMARELO}🔗 JusBrasil:${RESET} https://www.jusbrasil.com.br/busca?q=$nome_encoded"
-    echo -e "${AMARELO}🔗 Registro.br:${RESET} https://www.registro.br/cgi-bin/whois/?qr=$nome_encoded"
-    echo -e "${AMARELO}🔗 Telegram:${RESET} https://t.me/s?q=$nome_encoded"
+    echo -e "${AMARELO}Google:${RESET} https://www.google.com/search?q=$nome_encoded"
+    echo -e "${AMARELO}LinkedIn:${RESET} https://www.linkedin.com/search/results/all/?keywords=$nome_encoded"
+    echo -e "${AMARELO}Facebook:${RESET} https://www.facebook.com/search/top/?q=$nome_encoded"
+    echo -e "${AMARELO}Instagram:${RESET} https://www.instagram.com/$nome_encoded/"
+    echo -e "${AMARELO}Twitter/X:${RESET} https://twitter.com/search?q=$nome_encoded"
+    echo -e "${AMARELO}YouTube:${RESET} https://www.youtube.com/results?search_query=$nome_encoded"
+    echo -e "${AMARELO}Escavador:${RESET} https://www.escavador.com/?q=$nome_encoded"
+    echo -e "${AMARELO}JusBrasil:${RESET} https://www.jusbrasil.com.br/busca?q=$nome_encoded"
+    echo -e "${AMARELO}Registro.br:${RESET} https://www.registro.br/cgi-bin/whois/?qr=$nome_encoded"
+    echo -e "${AMARELO}Telegram:${RESET} https://t.me/s?q=$nome_encoded"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     echo ""
     echo -ne "${AMARELO}Quer abrir no navegador? (s/N): ${RESET}"
@@ -513,7 +514,7 @@ buscar_nome() {
 # 8 - Redes Sociais
 redes_sociais() {
     banner
-    section "👤 BUSCAR USERNAME EM REDES SOCIAIS"
+    section "BUSCAR USERNAME EM REDES SOCIAIS"
     echo -ne "${AMARELO}Username: ${RESET}"
     read user
     [[ -z "$user" ]] && { echo -e "${VERMELHO}Inválido${RESET}"; sleep 2; menu; return; }
@@ -564,7 +565,7 @@ redes_sociais() {
             url="${site#*:}"
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "$url" 2>/dev/null)
             if [[ "$code" != "404" && "$code" != "000" ]]; then
-                echo -e "  ${VERDE}✅ $nome_site${RESET} ($code) - $url"
+                echo -e "  ${VERDE}[OK] $nome_site${RESET} ($code) - $url"
             fi
         done
     fi
@@ -575,28 +576,28 @@ redes_sociais() {
 # 9 - E-mail
 consultar_email() {
     banner
-    section "📧 CONSULTAR E-MAIL"
+    section "CONSULTAR E-MAIL"
     echo -ne "${AMARELO}E-mail: ${RESET}"
     read email
     [[ -z "$email" ]] && { echo -e "${VERMELHO}Inválido${RESET}"; sleep 2; menu; return; }
     dominio=$(echo "$email" | cut -d'@' -f2)
     usuario=$(echo "$email" | cut -d'@' -f1)
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-    echo -e "${AMARELO}📧 E-mail:${RESET} $email"
-    echo -e "${AMARELO}🌐 Domínio:${RESET} $dominio"
+    echo -e "${AMARELO}E-mail:${RESET} $email"
+    echo -e "${AMARELO}Domínio:${RESET} $dominio"
     ip=$(dig +short "$dominio" 2>/dev/null | head -1)
-    echo -e "${AMARELO}📡 IP do servidor:${RESET} ${ip:-Não resolvido}"
-    echo -e "${AMARELO}📬 Servidores MX:${RESET}"
+    echo -e "${AMARELO}IP do servidor:${RESET} ${ip:-Não resolvido}"
+    echo -e "${AMARELO}Servidores MX:${RESET}"
     dig +short MX "$dominio" 2>/dev/null | while read line; do echo "   $line"; done
-    echo -e "${AMARELO}📝 Servidores NS:${RESET}"
+    echo -e "${AMARELO}Servidores NS:${RESET}"
     dig +short NS "$dominio" 2>/dev/null | while read line; do echo "   $line"; done
     echo ""
-    echo -e "${CIANO}🔗 Links úteis:${RESET}"
+    echo -e "${CIANO}Links úteis:${RESET}"
     hash=$(echo -n "$email" | md5sum 2>/dev/null | cut -d' ' -f1)
-    echo -e "${AMARELO}   🔍 Gravatar:${RESET} https://www.gravatar.com/avatar/$hash"
-    echo -e "${AMARELO}   🔍 HIBP (vazamentos):${RESET} https://haveibeenpwned.com/account/$email"
-    echo -e "${AMARELO}   🔍 Google:${RESET} https://www.google.com/search?q=$(url_encode "$email")"
-    echo -e "${AMARELO}   🔍 Hunter.io:${RESET} https://hunter.io/search/$dominio"
+    echo -e "${AMARELO}Gravatar:${RESET} https://www.gravatar.com/avatar/$hash"
+    echo -e "${AMARELO}HIBP (vazamentos):${RESET} https://haveibeenpwned.com/account/$email"
+    echo -e "${AMARELO}Google:${RESET} https://www.google.com/search?q=$(url_encode "$email")"
+    echo -e "${AMARELO}Hunter.io:${RESET} https://hunter.io/search/$dominio"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     press_enter
     menu
@@ -605,7 +606,7 @@ consultar_email() {
 # 10 - CEP
 buscar_cep() {
     banner
-    section "📮 CONSULTAR CEP (ViaCEP API)"
+    section "CONSULTAR CEP (ViaCEP API)"
     echo -ne "${AMARELO}CEP (apenas números): ${RESET}"
     read cep
     cep=$(echo "$cep" | tr -d ' -')
@@ -622,16 +623,16 @@ buscar_cep() {
 import sys,json
 d=json.load(sys.stdin)
 print('${VERDE}════════════════════════════════════════════${RESET}')
-print(f'${AMARELO}📮 CEP:${RESET} {d.get(\"cep\",\"\")}')
-print(f'${AMARELO}🏠 Logradouro:${RESET} {d.get(\"logradouro\",\"\")}')
-print(f'${AMARELO}📍 Bairro:${RESET} {d.get(\"bairro\",\"\")}')
-print(f'${AMARELO}🏙️ Cidade:${RESET} {d.get(\"localidade\",\"\")}')
-print(f'${AMARELO}🌍 UF:${RESET} {d.get(\"uf\",\"\")} ({d.get(\"estado\",\"\")})')
-print(f'${AMARELO}🔢 DDD:${RESET} {d.get(\"ddd\",\"\")}')
-print(f'${AMARELO}📋 IBGE:${RESET} {d.get(\"ibge\",\"\")}')
-print(f'${AMARELO}🗺️ Região:${RESET} {d.get(\"regiao\",\"\")}')
-print(f'${AMARELO}🏛️ Complemento:${RESET} {d.get(\"complemento\",\"\")}')
-if d.get(\"gia\"): print(f'${AMARELO}🏪 GIA:${RESET} {d.get(\"gia\",\"\")}')
+print(f'${AMARELO}CEP:${RESET} {d.get(\"cep\",\"\")}')
+print(f'${AMARELO}Logradouro:${RESET} {d.get(\"logradouro\",\"\")}')
+print(f'${AMARELO}Bairro:${RESET} {d.get(\"bairro\",\"\")}')
+print(f'${AMARELO}Cidade:${RESET} {d.get(\"localidade\",\"\")}')
+print(f'${AMARELO}UF:${RESET} {d.get(\"uf\",\"\")} ({d.get(\"estado\",\"\")})')
+print(f'${AMARELO}DDD:${RESET} {d.get(\"ddd\",\"\")}')
+print(f'${AMARELO}IBGE:${RESET} {d.get(\"ibge\",\"\")}')
+print(f'${AMARELO}Região:${RESET} {d.get(\"regiao\",\"\")}')
+print(f'${AMARELO}Complemento:${RESET} {d.get(\"complemento\",\"\")}')
+if d.get(\"gia\"): print(f'${AMARELO}GIA:${RESET} {d.get(\"gia\",\"\")}')
 print('${VERDE}════════════════════════════════════════════${RESET}')
         " 2>/dev/null
     else
@@ -644,9 +645,9 @@ print('${VERDE}═════════════════════�
 # 11 - CPF Completo (Selenium)
 buscar_cpf_completo() {
     banner
-    section "🆔 CPF COMPLETO (Selenium + situacao-cadastral)"
-    echo -e "${AMARELO}⚠️ Requer Python + Selenium + Chrome instalados${RESET}"
-    echo -e "${AMARELO}   pip install selenium webdriver-manager beautifulsoup4${RESET}"
+    section "CPF COMPLETO (Selenium + situacao-cadastral)"
+    echo -e "${AMARELO}[!] Requer Python + Selenium + Chrome instalados${RESET}"
+    echo -e "${AMARELO}pip install selenium webdriver-manager beautifulsoup4${RESET}"
     echo ""
     echo -ne "${AMARELO}CPF (11 dígitos): ${RESET}"
     read cpf
@@ -676,20 +677,20 @@ buscar_cpf_completo() {
 
 ferramenta_clima() {
     banner
-    section "🌦️ PREVISÃO DO TEMPO"
+    section "PREVISÃO DO TEMPO"
     echo -ne "${AMARELO}Cidade (ex: Sao+Paulo, London): ${RESET}"
     read cidade
     [[ -z "$cidade" ]] && cidade="Sao+Paulo"
     echo -e "${CIANO}Consultando wttr.in...${RESET}"
     curl -s "wttr.in/$cidade?m2&lang=pt" 2>/dev/null | head -40
     echo ""
-    echo -e "${CIANO}💡 Fonte: wttr.in${RESET}"
+    echo -e "${CIANO}Fonte: wttr.in${RESET}"
     press_enter
 }
 
 ferramenta_senha() {
     banner
-    section "🔑 GERADOR DE SENHAS"
+    section "GERADOR DE SENHAS"
     echo -ne "${AMARELO}Tamanho (8-64, padrão 16): ${RESET}"
     read tam
     tam=${tam:-16}
@@ -699,14 +700,14 @@ ferramenta_senha() {
     echo -ne "${AMARELO}Incluir símbolos? (s/N): ${RESET}"
     read sym
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-    echo -e "${CIANO}🔑 Senhas geradas:${RESET}"
+    echo -e "${CIANO}Senhas geradas:${RESET}"
     for i in 1 2 3; do
         if [[ "$sym" == "s" || "$sym" == "S" ]]; then
             pass=$(python3 -c "import secrets,string; c=string.ascii_letters+string.digits+string.punctuation; print(''.join(secrets.choice(c) for _ in range($tam)))" 2>/dev/null)
         else
             pass=$(python3 -c "import secrets,string; c=string.ascii_letters+string.digits; print(''.join(secrets.choice(c) for _ in range($tam)))" 2>/dev/null)
         fi
-        echo -e "${AMARELO}   $i.${RESET} $pass"
+        echo -e "${AMARELO}$i.${RESET} $pass"
     done
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     press_enter
@@ -714,38 +715,38 @@ ferramenta_senha() {
 
 ferramenta_hash() {
     banner
-    section "🔐 GERADOR DE HASH"
+    section "GERADOR DE HASH"
     echo -ne "${AMARELO}Texto: ${RESET}"
     read texto
     [[ -z "$texto" ]] && { echo -e "${VERMELHO}Inválido${RESET}"; sleep 2; return; }
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-    echo -e "${AMARELO}📝 Texto:${RESET} $texto"
+    echo -e "${AMARELO}Texto:${RESET} $texto"
     echo -e "${VERDE}────────────────────────────────────────────${RESET}"
-    echo -e "${AMARELO}🔹 MD5:${RESET} $(echo -n "$texto" | md5sum 2>/dev/null | cut -d' ' -f1)"
-    echo -e "${AMARELO}🔹 SHA1:${RESET} $(echo -n "$texto" | sha1sum 2>/dev/null | cut -d' ' -f1)"
-    echo -e "${AMARELO}🔹 SHA256:${RESET} $(echo -n "$texto" | sha256sum 2>/dev/null | cut -d' ' -f1)"
-    echo -e "${AMARELO}🔹 SHA512:${RESET} $(echo -n "$texto" | sha512sum 2>/dev/null | cut -d' ' -f1)"
+    echo -e "${AMARELO}MD5:${RESET} $(echo -n "$texto" | md5sum 2>/dev/null | cut -d' ' -f1)"
+    echo -e "${AMARELO}SHA1:${RESET} $(echo -n "$texto" | sha1sum 2>/dev/null | cut -d' ' -f1)"
+    echo -e "${AMARELO}SHA256:${RESET} $(echo -n "$texto" | sha256sum 2>/dev/null | cut -d' ' -f1)"
+    echo -e "${AMARELO}SHA512:${RESET} $(echo -n "$texto" | sha512sum 2>/dev/null | cut -d' ' -f1)"
     echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     press_enter
 }
 
 ferramenta_base64() {
     banner
-    section "🔣 BASE64 ENCODE/DECODE"
+    section "BASE64 ENCODE/DECODE"
     echo -e "${CIANO}╔═══════════════════════════════════════════════╗${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}1.${RESET} Codificar (encode)           ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}2.${RESET} Decodificar (decode)         ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}0.${RESET} 🔙 Voltar                   ${CIANO}║${RESET}"
+    echo -e "${CIANO}║${RESET}   ${AMARELO}[1]${RESET} Codificar (encode)           ${CIANO}║${RESET}"
+    echo -e "${CIANO}║${RESET}   ${AMARELO}[2]${RESET} Decodificar (decode)         ${CIANO}║${RESET}"
+    echo -e "${CIANO}║${RESET}   ${AMARELO}[0]${RESET}  Voltar                   ${CIANO}║${RESET}"
     echo -e "${CIANO}╚═══════════════════════════════════════════════╝${RESET}"
     echo ""
-    echo -ne "${VERDE}➜ Escolha: ${RESET}"
+    echo -ne "${VERDE}> Escolha: ${RESET}"
     read sub
     case $sub in
         1)
             echo -ne "${AMARELO}Texto: ${RESET}"
             read txt
             echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-            echo -e "${AMARELO}🔣 Base64:${RESET}"
+            echo -e "${AMARELO}Base64:${RESET}"
             echo -n "$txt" | base64 2>/dev/null
             echo -e "${VERDE}════════════════════════════════════════════${RESET}"
             ;;
@@ -753,7 +754,7 @@ ferramenta_base64() {
             echo -ne "${AMARELO}Base64: ${RESET}"
             read b64
             echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-            echo -e "${AMARELO}📝 Decodificado:${RESET}"
+            echo -e "${AMARELO}Decodificado:${RESET}"
             echo "$b64" | base64 -d 2>/dev/null || echo -e "${VERMELHO}Base64 inválido${RESET}"
             echo -e "${VERDE}════════════════════════════════════════════${RESET}"
             ;;
@@ -766,12 +767,12 @@ ferramenta_base64() {
 
 ferramenta_useragent() {
     banner
-    section "🌐 SEU USER-AGENT"
+    section "SEU USER-AGENT"
     echo -e "${CIANO}Consultando...${RESET}"
     ua=$(api_get "https://httpbin.org/user-agent")
     if [[ -n "$ua" ]]; then
         echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-        echo "$ua" | python3 -c "import sys,json; print(f'${AMARELO}🌍 User-Agent:${RESET} {json.load(sys.stdin).get(\"user-agent\",\"\")}')" 2>/dev/null
+        echo "$ua" | python3 -c "import sys,json; print(f'${AMARELO}User-Agent:${RESET} {json.load(sys.stdin).get(\"user-agent\",\"\")}')" 2>/dev/null
         echo -e "${VERDE}════════════════════════════════════════════${RESET}"
     else
         echo -e "${VERMELHO}Não foi possível determinar${RESET}"
@@ -780,17 +781,17 @@ ferramenta_useragent() {
 }
 
 ferramenta_info_sistema() {
-    echo -e "${CIANO}📊 INFORMAÇÕES DO SISTEMA${RESET}"
+    echo -e "${CIANO}INFORMAÇÕES DO SISTEMA${RESET}"
     echo -e "${VERDE}────────────────────────────────────────────${RESET}"
-    echo -e "${AMARELO}🖥️  OS:${RESET} $(uname -o 2>/dev/null || echo N/A)"
-    echo -e "${AMARELO}🐚 Shell:${RESET} $SHELL"
-    echo -e "${AMARELO}📦 Pacotes:${RESET} $(command -v dpkg &>/dev/null && dpkg -l 2>/dev/null | wc -l || echo N/A)"
+    echo -e "${AMARELO}OS:${RESET} $(uname -o 2>/dev/null || echo N/A)"
+    echo -e "${AMARELO}Shell:${RESET} $SHELL"
+    echo -e "${AMARELO}Pacotes:${RESET} $(command -v dpkg &>/dev/null && dpkg -l 2>/dev/null | wc -l || echo N/A)"
     if is_termux; then
-        echo -e "${AMARELO}📱 Dispositivo:${RESET} $(getprop ro.product.model 2>/dev/null || echo N/A)"
-        echo -e "${AMARELO}🤖 Android:${RESET} $(getprop ro.build.version.release 2>/dev/null || echo N/A)"
-        echo -e "${AMARELO}🔋 Bateria:${RESET} $(termux-battery-status 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['percentage']}%\")" 2>/dev/null || echo N/A)"
+        echo -e "${AMARELO}Dispositivo:${RESET} $(getprop ro.product.model 2>/dev/null || echo N/A)"
+        echo -e "${AMARELO}Android:${RESET} $(getprop ro.build.version.release 2>/dev/null || echo N/A)"
+        echo -e "${AMARELO}Bateria:${RESET} $(termux-battery-status 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['percentage']}%\")" 2>/dev/null || echo N/A)"
     fi
-    echo -e "${AMARELO}🌐 IP público:${RESET} $(api_get "ifconfig.me" || echo N/A)"
+    echo -e "${AMARELO}IP público:${RESET} $(api_get "https://ifconfig.me/ip" || echo N/A)"
     echo -e "${AMARELO}⏰ Uptime:${RESET} $(uptime -p 2>/dev/null || echo N/A)"
     echo -e "${VERDE}────────────────────────────────────────────${RESET}"
     press_enter
@@ -821,30 +822,32 @@ ferramenta_matriz() {
 
 ferramentas_extras() {
     banner
-    section "🛠️  FERRAMENTAS EXTRAS"
-    echo -e "${CIANO}╔═══════════════════════════════════════════════╗${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}1.${RESET} 📊 Info do sistema               ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}2.${RESET} 🧹 Limpar histórico              ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}3.${RESET} 📡 Ping/Speedtest                ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}4.${RESET} 💡 QR Code                       ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}5.${RESET} 🌙 Matrix Rain                   ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}6.${RESET} 🔗 Encurtar URL                  ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}7.${RESET} 🕵️ Verificar vazamento email    ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}8.${RESET} 🌦️  Previsão do tempo            ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}9.${RESET} 🔑 Gerador de senhas             ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}10.${RESET} 🔐 Gerador de hash              ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}11.${RESET} 🔣 Base64 encode/decode         ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}12.${RESET} 🌐 Meu User-Agent               ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}0.${RESET}  🔙 Voltar                      ${CIANO}║${RESET}"
-    echo -e "${CIANO}╚═══════════════════════════════════════════════╝${RESET}"
+    section "FERRAMENTAS EXTRAS"
+    echo -e "${CIANO}───────────────────────────────────────────────${RESET}"
+    echo -e "  ${VERDE}FERRAMENTAS EXTRAS${RESET}"
+    echo -e "${CIANO}───────────────────────────────────────────────${RESET}"
     echo ""
-    echo -ne "${VERDE}➜ Escolha: ${RESET}"
+    echo -e "  ${AMARELO}[1]${RESET}  Info do sistema"
+    echo -e "  ${AMARELO}[2]${RESET}  Limpar histórico"
+    echo -e "  ${AMARELO}[3]${RESET}  Ping/Speedtest"
+    echo -e "  ${AMARELO}[4]${RESET}  QR Code"
+    echo -e "  ${AMARELO}[5]${RESET}  Matrix Rain"
+    echo -e "  ${AMARELO}[6]${RESET}  Encurtar URL"
+    echo -e "  ${AMARELO}[7]${RESET}  Verificar vazamento email"
+    echo -e "  ${AMARELO}[8]${RESET}  Previsão do tempo"
+    echo -e "  ${AMARELO}[9]${RESET}  Gerador de senhas"
+    echo -e "  ${AMARELO}[10]${RESET} Gerador de hash"
+    echo -e "  ${AMARELO}[11]${RESET} Base64 encode/decode"
+    echo -e "  ${AMARELO}[12]${RESET} Meu User-Agent"
+    echo -e "  ${AMARELO}[0]${RESET}  Voltar"
+    echo ""
+    echo -ne "${VERDE}> Escolha: ${RESET}"
     read sub
     case $sub in
         1) ferramenta_info_sistema ;;
         2)
             history -c 2>/dev/null
-            echo -e "${VERDE}✅ Histórico limpo${RESET}"
+            echo -e "${VERDE}[OK] Histórico limpo${RESET}"
             sleep 2
             ;;
         3) ferramenta_speedtest ;;
@@ -867,8 +870,8 @@ ferramentas_extras() {
             short=$(api_get "https://tinyurl.com/api-create.php?url=$(url_encode "$url")")
             if [[ -n "$short" ]]; then
                 echo -e "${VERDE}════════════════════════════════════════════${RESET}"
-                echo -e "${AMARELO}🔗 Original:${RESET} $url"
-                echo -e "${AMARELO}🔗 Encurtada:${RESET} $short"
+                echo -e "${AMARELO}Original:${RESET} $url"
+                echo -e "${AMARELO}Encurtada:${RESET} $short"
                 echo -e "${VERDE}════════════════════════════════════════════${RESET}"
             else
                 echo -e "${VERMELHO}Erro ao encurtar URL${RESET}"
@@ -878,7 +881,7 @@ ferramentas_extras() {
         7)
             echo -ne "${AMARELO}E-mail: ${RESET}"
             read em
-            echo -e "${CIANO}🔗 Consulte: https://haveibeenpwned.com/account/$em${RESET}"
+            echo -e "${CIANO}Consulte: https://haveibeenpwned.com/account/$em${RESET}"
             if is_termux; then
                 termux-open-url "https://haveibeenpwned.com/account/$em"
             fi
@@ -968,23 +971,25 @@ cli_tempo() {
 # =============================================
 menu() {
     banner
-    echo -e "${CIANO}╔═══════════════════════════════════════════════╗${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}1.${RESET} 📍 Buscar IP (rua, bairro, CEP, DDD...)   ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}2.${RESET} 📱 Dados de Telefone                ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}3.${RESET} 🚗 Buscar Placa (API real)          ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}4.${RESET} 🆔 CNPJ (BrasilAPI - Receita)       ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}5.${RESET} 📇 CPF (validação + dígitos)        ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}6.${RESET} 🌐 Buscar Domínio (DNS + WHOIS)     ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}7.${RESET} 🔍 Buscar Nome (Google Dork)       ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}8.${RESET} 👤 Redes Sociais (username)        ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}9.${RESET} 📧 Consultar E-mail                ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}10.${RESET} 📮 CEP (ViaCEP - rua, bairro)     ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}11.${RESET} 🆔 CPF Completo (Selenium)         ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}12.${RESET} 🛠️  Ferramentas Extras            ${CIANO}║${RESET}"
-    echo -e "${CIANO}║${RESET}   ${AMARELO}0.${RESET}  ❌ Sair                           ${CIANO}║${RESET}"
-    echo -e "${CIANO}╚═══════════════════════════════════════════════╝${RESET}"
+    echo -e "${CIANO}───────────────────────────────────────────────${RESET}"
+    echo -e "  ${VERDE}MENU PRINCIPAL${RESET}"
+    echo -e "${CIANO}───────────────────────────────────────────────${RESET}"
     echo ""
-    echo -ne "${VERDE}➜ Escolha: ${RESET}"
+    echo -e "  ${AMARELO}[1]${RESET}  Buscar IP (rua, bairro, CEP, DDD...)"
+    echo -e "  ${AMARELO}[2]${RESET}  Dados de Telefone"
+    echo -e "  ${AMARELO}[3]${RESET}  Buscar Placa (API real)"
+    echo -e "  ${AMARELO}[4]${RESET}  CNPJ (BrasilAPI - Receita)"
+    echo -e "  ${AMARELO}[5]${RESET}  CPF (validação + dígitos)"
+    echo -e "  ${AMARELO}[6]${RESET}  Buscar Domínio (DNS + WHOIS)"
+    echo -e "  ${AMARELO}[7]${RESET}  Buscar Nome (Google Dork)"
+    echo -e "  ${AMARELO}[8]${RESET}  Redes Sociais (username)"
+    echo -e "  ${AMARELO}[9]${RESET}  Consultar E-mail"
+    echo -e "  ${AMARELO}[10]${RESET} CEP (ViaCEP - rua, bairro)"
+    echo -e "  ${AMARELO}[11]${RESET} CPF Completo (Selenium)"
+    echo -e "  ${AMARELO}[12]${RESET} Ferramentas Extras"
+    echo -e "  ${AMARELO}[0]${RESET}  Sair"
+    echo ""
+    echo -ne "${VERDE}> Escolha: ${RESET}"
     read opcao
     case $opcao in
         1) buscar_ip ;;
@@ -1031,7 +1036,7 @@ case "$1" in
             "https://www.youtube.com/@$2" \
             "https://t.me/$2"; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "$site" 2>/dev/null)
-            [[ "$code" != "404" && "$code" != "000" ]] && echo "✅ $site ($code)"
+            [[ "$code" != "404" && "$code" != "000" ]] && echo "[OK] $site ($code)"
         done
         exit 0
         ;;
@@ -1050,12 +1055,12 @@ esac
 # =============================================
 # INÍCIO
 # =============================================
-trap 'echo -e "\n${VERMELHO}⚠️  Interrompido pelo usuário${RESET}"; exit 0' INT
+trap 'echo -e "\n${VERMELHO}[!]  Interrompido pelo usuário${RESET}"; exit 0' INT
 
-echo -e "${CIANO}🔧 Verificando dependências...${RESET}"
+echo -e "${CIANO}Verificando dependências...${RESET}"
 for cmd in curl dig python3; do
     if ! command -v $cmd &>/dev/null; then
-        echo -e "${AMARELO}⚠️  $cmd não encontrado. Tentando instalar...${RESET}"
+        echo -e "${AMARELO}[!]  $cmd não encontrado. Tentando instalar...${RESET}"
         if command -v pkg &>/dev/null; then
             pkg install -y $cmd 2>/dev/null
         elif command -v apt &>/dev/null; then

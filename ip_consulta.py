@@ -202,42 +202,42 @@ def main():
 
     # ---------- MODO MENU (com cores) ----------
     print(f"{VERDE}════════════════════════════════════════════{RESET}")
-    print(f"{AMARELO}🌍 IP:{RESET} {data.get('query', ip)}")
-    print(f"{AMARELO}📍 País:{RESET} {data.get('country', '')} ({country_code})")
-    print(f"{AMARELO}🏙️ Cidade:{RESET} {cidade} - {estado} ({uf})")
+    print(f"{AMARELO}IP:{RESET} {data.get('query', ip)}")
+    print(f"{AMARELO}País:{RESET} {data.get('country', '')} ({country_code})")
+    print(f"{AMARELO}Cidade:{RESET} {cidade} - {estado} ({uf})")
     if data.get("district"):
-        print(f"{AMARELO}🗺️ Distrito:{RESET} {data['district']}")
+        print(f"{AMARELO}Distrito:{RESET} {data['district']}")
     if rua:
-        print(f"{AMARELO}🛣️ Rua:{RESET} {rua}{' - Nº ' + numero if numero else ''}")
+        print(f"{AMARELO}Rua:{RESET} {rua}{' - Nº ' + numero if numero else ''}")
     if bairro:
-        print(f"{AMARELO}🏘️ Bairro:{RESET} {bairro}")
+        print(f"{AMARELO}Bairro:{RESET} {bairro}")
     if cep:
-        print(f"{AMARELO}📮 CEP:{RESET} {cep}")
+        print(f"{AMARELO}CEP:{RESET} {cep}")
     if vc:
         if vc.get("complemento"):
-            print(f"{AMARELO}➕ Complemento:{RESET} {vc['complemento']}")
-        print(f"{AMARELO}📞 DDD:{RESET} {vc.get('ddd', '')}")
+            print(f"{AMARELO}Complemento:{RESET} {vc['complemento']}")
+        print(f"{AMARELO}DDD:{RESET} {vc.get('ddd', '')}")
     if lat_lon:
-        print(f"{AMARELO}🌐 Coord:{RESET} {lat_lon}")
+        print(f"{AMARELO}Coord:{RESET} {lat_lon}")
     if data.get("timezone"):
-        print(f"{AMARELO}🕐 TZ:{RESET} {data['timezone']}")
+        print(f"{AMARELO}TZ:{RESET} {data['timezone']}")
     if data.get("isp"):
-        print(f"{AMARELO}🏢 ISP:{RESET} {data['isp']}")
+        print(f"{AMARELO}ISP:{RESET} {data['isp']}")
     if data.get("org"):
-        print(f"{AMARELO}📡 Org:{RESET} {data['org']}")
+        print(f"{AMARELO}Org:{RESET} {data['org']}")
     if data.get("as"):
-        print(f"{AMARELO}🔗 ASN:{RESET} {asn_line(data)}")
+        print(f"{AMARELO}ASN:{RESET} {asn_line(data)}")
     if data.get("reverse"):
-        print(f"{AMARELO}🔁 PTR:{RESET} {data['reverse']}")
+        print(f"{AMARELO}PTR:{RESET} {data['reverse']}")
     if data.get("proxy"):
-        print(f"{VERMELHO}🛡️ Proxy/VPN:{RESET} SIM")
+        print(f"{VERMELHO}Proxy/VPN:{RESET} SIM")
     if data.get("mobile"):
-        print(f"{AMARELO}📱 Rede móvel:{RESET} SIM")
+        print(f"{AMARELO}Rede móvel:{RESET} SIM")
     if data.get("hosting"):
-        print(f"{AMARELO}☁️  Hosting/Datacenter:{RESET} SIM")
+        print(f"{AMARELO}Hosting/Datacenter:{RESET} SIM")
     if mapa:
-        print(f"{AMARELO}🗺️ Mapa:{RESET} {mapa}")
-    print(f"{CIANO}ℹ️  Localização aproximada (nível ISP), não é a casa exata.{RESET}")
+        print(f"{AMARELO}Mapa:{RESET} {mapa}")
+    print(f"{CIANO}Localização aproximada (nível ISP), não é a casa exata.{RESET}")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CYBERTRACE v2.1 - Consulta CPF (situacao-cadastral.com)
+"""CYBERTRACE v2.3 - Consulta CPF (situacao-cadastral.com)
 Requer: pip install selenium webdriver-manager beautifulsoup4
 Requer: Google Chrome ou Chromium instalado
 """
@@ -160,7 +160,7 @@ def exibir_resultado(result: dict):
             if chave in result:
                 valor = result[chave]
                 if chave == "CPF Válido":
-                    status = "✓ Sim" if valor else "✗ Não"
+                    status = "Sim" if valor else "Não"
                     print(f"  {chave:25}: {status}")
                 else:
                     print(f"  {chave:25}: {valor}")
