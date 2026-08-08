@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+.cybertrace_historico.log
+*.bak
